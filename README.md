@@ -7,7 +7,7 @@ Wraps the functionality of curl into an easy to use node module
 
 ## Installation
 
-### Install ffmpeg first
+### Install curl first
 
 curljs uses curl so make sure you have it installed first
 
