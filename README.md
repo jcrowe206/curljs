@@ -24,18 +24,18 @@ include the library in your node.js file
 
     var curl = require("curljs");
 
-    var curlOpts = {
-        FOLLOW_REDIRECTS : 1,
-        VERBOSE          : 0,
-        SILENT           : 1,
-        IGNORE_CERT      : 1,
-        MAX_REDIRS       : 5,
-        CONNECT_TIMEOUT  : 5, // time in seconds
-        NTLM             : 0, // if you are going to use NTLM or NTLM_PROXY be sure they are available to your system
-        NTLM_PROXY       : 0
-    }
+    var curlOpts = curl.opts.silent().ignore_cert().follow_redirects().max_redirs(5).connect_timeout(3);
 
     curl("www.example.com", curlOpts, function(err, data, stderr) {
         // do something
     }
 
+## Available Options
+    .verbose
+    .follow_redirects
+    .silent
+    .ignore_cert
+    .max_redirs
+    .connect_timeout
+    .ntlm
+    .ntlm_proxy
