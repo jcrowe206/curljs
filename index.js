@@ -8,11 +8,18 @@ var defaults = {
     SILENT           : 1,
     IGNORE_CERT      : 1,
     MAX_REDIRS       : 5,
-    CONNECT_TIMEOUT  : 5 // time in seconds
+    CONNECT_TIMEOUT  : 5, // time in seconds
+    NTLM             : 0, // if you are going to use this or NTLM_PROXY be sure they are available to your system
+    NTLM_PROXY       : 0
 }
 
 module.exports = function(url, options, callback) {
     callback = callback || function () {};
+
+    if (typeof options == "function") {
+        callback = options;
+        options = null;
+    }
 
     if (options) {
         // apply options
@@ -31,6 +38,8 @@ module.exports = function(url, options, callback) {
     curlString += defaults.IGNORE_CERT ? "-k " : '';
     curlString += defaults.MAX_REDIRS ? "--max-redirs " + defaults.MAX_REDIRS + " " : '';
     curlString += defaults.CONNECT_TIMEOUT ? "--connect-timeout " + defaults.CONNECT_TIMEOUT + " " : '';
+    curlString += defaults.NTLM ? "--ntlm " : "";
+    curlString += defaults.NTLM_PROXY ? "--proxy-ntlm " : "";
 
     try {
         cp.exec(curlString, function(err, stdout, stderr) {
