@@ -37,6 +37,6 @@ module.exports = function(url, options, callback) {
             callback(err, stdout, stderr);
         });
     } catch (err) {
-        callback(err, null)
+        callback(err, null, null);
     }
 }

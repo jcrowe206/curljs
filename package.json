@@ -11,8 +11,5 @@
         "type": "git",
         "url": "https://hacksparrow@github.com/hacksparrow/flv2mp3.git"
     },
-    "dependencies": {
-        "commander": "0.5.2"
-    },
     "engines": { "node": "*" }
 }
