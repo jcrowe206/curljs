@@ -30,7 +30,9 @@ include the library in your node.js file
         SILENT           : 1,
         IGNORE_CERT      : 1,
         MAX_REDIRS       : 5,
-        CONNECT_TIMEOUT  : 5 // time in seconds
+        CONNECT_TIMEOUT  : 5, // time in seconds
+        NTLM             : 0, // if you are going to use NTLM or NTLM_PROXY be sure they are available to your system
+        NTLM_PROXY       : 0
     }
 
     curl("www.example.com", curlOpts, function(err, data, stderr) {
