@@ -23,19 +23,21 @@ http://curl.haxx.se/docs/install.html
 include the library in your node.js file
 
     var curl = require("curljs");
-
-    var curlOpts = curl.opts.silent().ignore_cert().follow_redirects().max_redirs(5).connect_timeout(3);
+    var dataObject = {firstParam : "first value", secondParam : "second value"};
+    var curlOpts = curl.opts.silent().ignore_cert().follow_redirects().max_redirs(5).connect_timeout(3).post_data(dataObject, false);
 
     curl("www.example.com", curlOpts, function(err, data, stderr) {
         // do something
     }
 
 ## Available Options
-    .verbose
-    .follow_redirects
-    .silent
-    .ignore_cert
-    .max_redirs
-    .connect_timeout
-    .ntlm
-    .ntlm_proxy
+    .verbose (boolean)
+    .follow_redirects (boolean)
+    .silent (boolean)
+    .ignore_cert (boolean)
+    .max_redirs (int)
+    .connect_timeout (int)
+    .ntlm (boolean)
+    .ntlm_proxy (boolean)
+    .post_data (object)
+    .post_data_urlencode (object)

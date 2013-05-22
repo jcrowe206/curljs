@@ -49,6 +49,7 @@ var optionsBuilder = function() {
     var _silentOpt   = "-S";
     var _insecureOpt = "-k";
     var _postOpt     = '--data';
+    var _postUrlEncodeOpt = "--data-urlencode";
     var _maxRedirsOpt   = "--max-redirs";
     var _timeoutOpt  = "--connect-timeout";
     var _ntlmOpt     = "-ntlm";
@@ -68,6 +69,20 @@ var optionsBuilder = function() {
 
     var removeOption = function(opt) {
         _string = _string.replace(new RegExp(opt, "g"), '');
+    }
+
+    var buildPostString = function(baseString, o){
+        var string = baseString + ' "';
+
+        for (var key in o) {
+            string += key + '=' + o[key] + '&';
+        }
+
+        string = string.substr(0, string.length - 1); // remove the trailing &
+
+        string += '"';
+
+        return string;
     }
 
     this.stringify = function() {
@@ -119,28 +134,28 @@ var optionsBuilder = function() {
         modifyOptionString(_ntlmProxyOpt, o);
         return this;
     }
-    this.post_data = function(dataArray, urlencode) {
+    this.post_data = function(o) {
         removeOption(_postOpt);
 
-        if (urlencode) {
-            _postOpt = '--data-urlencode';
+        if (typeof o === "object") {
+            _postOpt = buildPostString(_postOpt, o);
+
+            modifyOptionString(_postOpt, o);
         }
-
-        if (typeof dataArray === "object") {
-            _postOpt += ' "';
-            for (var key in dataArray) {
-                _postOpt += key + '=' + dataArray[key] + '&';
-            }
-
-            _postOpt = _postOpt.substr(0, _postOpt.length - 1); // remove the trailing &
-
-            _postOpt += '"';
-            modifyOptionString(_postOpt, dataArray);
-        }
-
 
         return this;
 
+    }
+    this.post_data_urlencode = function(o) {
+        removeOption(_postUrlEncodeOpt);
+
+        if (typeof o === "object") {
+            _postUrlEncodeOpt = buildPostString(_postUrlEncodeOpt, o);
+
+            modifyOptionString(_postUrlEncodeOpt, o);
+        }
+
+        return this;
     }
     this.clear = function() {
         _string = '';
