@@ -1,8 +1,7 @@
 {
     "name": "curljs",
-    "version": "0.1.0",
+    "version": "0.1.1",
     "description": "Node.js module that wraps curl functionality",
-    "preferGlobal": "false",
     "main": "index.js",
     "bin": { "curljs": "index.js" },
     "author": "Jonathan Crowe <jcrowe206@gmail.com> ",
@@ -12,4 +11,4 @@
         "url": "https://github.com/jcrowe206/curljs.git"
     },
     "engines": { "node": "*" }
-}
+}`
