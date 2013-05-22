@@ -11,4 +11,4 @@
         "url": "https://github.com/jcrowe206/curljs.git"
     },
     "engines": { "node": "*" }
-}`
+}
