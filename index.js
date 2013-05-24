@@ -78,7 +78,9 @@ var optionsBuilder = function() {
             string += key + '=' + o[key] + '&';
         }
 
-        string = string.substr(0, string.length - 1); // remove the trailing &
+        if (string.substr(o, string.length -1) === "&") {
+            string = string.substr(0, string.length - 1); // remove the trailing &
+        }
 
         string += '"';
 

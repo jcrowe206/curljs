@@ -1,6 +1,6 @@
 {
     "name": "curljs",
-    "version": "0.1.1",
+    "version": "0.1.2",
     "description": "Node.js module that wraps curl functionality",
     "main": "index.js",
     "bin": { "curljs": "index.js" },
