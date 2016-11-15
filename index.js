@@ -29,7 +29,7 @@ var curl = function(url, options, callback) {
         options = opts.follow_redirects().silent().max_redirs(5).connect_timeout(5);
     }
 
-    var curlString = "curl '" + url + "' ";
+    var curlString = 'curl "' + url + '" ';
 
     curlString += options.stringify();
 
