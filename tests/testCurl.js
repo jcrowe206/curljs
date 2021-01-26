@@ -27,3 +27,8 @@ curl("www.google.com", opts, function(err, resp) {
 
 opts.follow_redirects(false);
 assert.equal(opts.stringify().trim(), "-v -S -k  --proxy-ntlm -ntlm  --connect-timeout 3  --max-redirs 10");
+
+curl("www.google.com' & touch test.txt #'", function(err, resp) {
+    assert.notEqual(err, null, "there should be errors from curling with unsafe url");
+    assert.equal(resp, null, "curling with unsafe url should return error");
+});
