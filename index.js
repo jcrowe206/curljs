@@ -28,6 +28,10 @@ var curl = function(url, options, callback) {
         var opts = new optionsBuilder();
         options = opts.follow_redirects().silent().max_redirs(5).connect_timeout(5);
     }
+    
+    if (/[`$&{}[;|]/g.test(url)) {
+        return callback(new Error('Invalid Url'), null, null);
+    }
 
     var curlString = 'curl "' + url + '" ';
 
